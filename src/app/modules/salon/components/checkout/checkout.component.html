@@ -1,0 +1,44 @@
+<div class="container">
+  <app-header></app-header>
+  <div *ngIf="bookingDetails" class="checkout-screen">
+    <h2>Checkout</h2>
+    <p><strong>Name:</strong> {{ bookingDetails.name }}</p>
+    <p><strong>Description:</strong> {{ bookingDetails.description }}</p>
+    <p><strong>Duration:</strong> {{ bookingDetails.duration }} mins</p>
+    <p><strong>Price:</strong> ${{ bookingDetails.price }}</p>
+    <p><strong>Selected Extras:</strong></p>
+    <p *ngIf="addons[0]">
+      {{ bookingDetails.addons[0].name }} - ${{
+        bookingDetails.addons[0].price
+      }}
+    </p>
+    <p *ngIf="addons[1]">
+      {{ bookingDetails.addons[1].name }} - ${{
+        bookingDetails.addons[1].price
+      }}
+    </p>
+    <p *ngIf="!addons[0] && !addons[1]">None</p>
+
+    <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+      <label for="firstName">First Name:</label>
+      <input id="firstName" formControlName="firstName" />
+
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" formControlName="lastName" />
+
+      <label for="phone">Phone:</label>
+      <input id="phone" formControlName="phone" />
+
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" />
+      <p class="final-price">Final Price: ${{ getTotal() }}</p>
+      <div class="buttons">
+        <button class="cancel-btn" (click)="goHome()">Cancel</button>
+        <button class="checkout-btn" type="submit">Checkout</button>
+      </div>
+    </form>
+    <div class="success" *ngIf="success">The booking is confirmed</div>
+    <div class="error" *ngIf="!success && formSubmitted">Form is invalid</div>
+  </div>
+  <div *ngIf="!bookingDetails"><h1>No service selected</h1></div>
+</div>

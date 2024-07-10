@@ -1,0 +1,34 @@
+header {
+  background-color: rgb(203, 185, 114);
+  width: 100vw;
+  height: 100px;
+  display: flex;
+}
+
+.salon-name,
+.salon-address {
+  width: 50%;
+}
+
+.salon-name {
+  display: flex;
+  align-items: center;
+}
+
+.salon-name h1 {
+  margin-left: 10vw;
+  cursor: pointer;
+}
+
+.salon-address {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.salon-address h3 {
+  margin-top: 10px;
+  margin-right: 10vw;
+  color: rgb(68, 68, 68);
+  font-size: 14px;
+  font-weight: 400;
+}

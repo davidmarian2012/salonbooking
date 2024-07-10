@@ -1,0 +1,27 @@
+<div class="container">
+  <app-header></app-header>
+  <div class="content" *ngIf="service">
+    <h1>{{ service.name }}</h1>
+    <p><strong>Description:</strong> {{ service.description }}</p>
+    <p><strong>Duration:</strong> {{ service.duration }} mins</p>
+    <p><strong>Price:</strong> ${{ service.price }}</p>
+    <h2>Add-ons</h2>
+    <form (ngSubmit)="book()">
+      <ul>
+        <li *ngFor="let addon of service.addons; let i = index">
+          <input
+            type="checkbox"
+            [(ngModel)]="addons[i]"
+            name="addon-{{ addon.name }}"
+          />
+          {{ addon.name }} ({{ addon.duration }} mins) - ${{ addon.price }}
+        </li>
+      </ul>
+      <button class="cancel-btn" (click)="goHome()">Cancel</button>
+      <button class="book-btn" type="submit">Book</button>
+    </form>
+  </div>
+  <div class="not-found" *ngIf="!service">
+    <h1>This page does not exist!</h1>
+  </div>
+</div>
